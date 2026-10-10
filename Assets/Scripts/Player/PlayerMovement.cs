@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && _isGrounded)
         {
             _rigidbody.AddForce(Vector2.up * _jumpHeihgt, ForceMode2D.Impulse);
-            _animator.SetTrigger("Jump");
+            SetupAnimationJump();
         }
     }
 
@@ -73,5 +73,22 @@ public class PlayerMovement : MonoBehaviour
             _fliper.Flip();
         else if (_moveInput < 0)
             _fliper.UnFlip();
+    }
+
+    private void LogParametersAnimator()
+    {
+        float speed = _animator.GetFloat(PlayerAnimatorData.Params.Speed);
+        bool isGrounded = _animator.GetBool(PlayerAnimatorData.Params.IsGrounded);
+    }
+
+    private void SetupAnimations(float speed, bool isGrounded, int stepsAmount, bool shouldAttack)
+    {
+        _animator.SetFloat(PlayerAnimatorData.Params.Speed, speed);
+        _animator.SetBool(PlayerAnimatorData.Params.IsGrounded, isGrounded);
+    }
+
+    private void SetupAnimationJump()
+    {
+        _animator.SetTrigger("Jump");
     }
 }
