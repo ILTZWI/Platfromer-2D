@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Transform _startPosition;
     [SerializeField] private Transform _targetPosition;
+    [SerializeField] private Fliper _fliper;
     [SerializeField] private float _speed;
     [SerializeField] private Enemy _enemy;
 
@@ -29,10 +30,12 @@ public class EnemyController : MonoBehaviour
         if(_isRichedPoint)
         {
             target = _startPosition;
+            _fliper.UnFlip();
         }
-        else 
+        else
         {
             target = _targetPosition;
+            _fliper.Flip();
         }
 
         Move(target);

@@ -924,7 +924,9 @@ GameObject:
   - component: {fileID: 572390822}
   - component: {fileID: 572390821}
   - component: {fileID: 572390820}
+  - component: {fileID: 572390826}
   - component: {fileID: 572390825}
+  - component: {fileID: 572390827}
   - component: {fileID: 572390818}
   - component: {fileID: 572390824}
   m_Layer: 0
@@ -973,7 +975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18a18725783bbf469f8d25a12b7fb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  _checkIsGround: {fileID: 1269374976}
+  _checkIsGround: {fileID: 1269374978}
+  _fliper: {fileID: 572390827}
   _moveSpeed: 4
   _jumpHeihgt: 2.5
   _animator: {fileID: 572390821}
@@ -1124,6 +1127,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5106d43edbeed443b5d2f8fdb9094c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wallet
+--- !u!114 &572390826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572390817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ddad1e6d10e6c429ba6daa41b9efb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinDetector
+  _wallet: {fileID: 572390825}
+--- !u!114 &572390827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572390817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b410c935f175c374c96f36cb4c773203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fliper
+  _spriteRenderer: {fileID: 572390822}
 --- !u!1 &572433149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8616821104531268472, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
@@ -1177,6 +1206,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.86, y: -0.86}
   m_Size: {x: 4.01, y: 6.16}
   m_Direction: 0
+--- !u!212 &572433156 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2078947229196710077, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
+  m_PrefabInstance: {fileID: 4095281782729471849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &572433158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572433149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b410c935f175c374c96f36cb4c773203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fliper
+  _spriteRenderer: {fileID: 572433156}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1776,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1880,7 +1927,7 @@ GameObject:
   - component: {fileID: 1164779241}
   - component: {fileID: 1164779240}
   - component: {fileID: 1164779239}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3012,27 +3059,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1269374977}
-  - component: {fileID: 1269374976}
+  - component: {fileID: 1269374978}
   m_Layer: 0
-  m_Name: GroundCheck
+  m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1269374976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1269374975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88c26197c11538a48959dca40c2ddf43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CheckIsGround
-  _startRay: {fileID: 1269374977}
 --- !u!4 &1269374977
 Transform:
   m_ObjectHideFlags: 0
@@ -3048,6 +3082,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 572390823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1269374978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269374975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9fe4564c5a33f841849cc7ab4bc3fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundChecker
+  _startRay: {fileID: 1269374977}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1397248742
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,6 +3480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   _startPosition: {fileID: 827579339}
   _targetPosition: {fileID: 1113446555}
+  _fliper: {fileID: 572433158}
   _speed: 1
   _enemy: {fileID: 572433150}
 --- !u!4 &1566211751
@@ -3460,8 +3511,8 @@ GameObject:
   - component: {fileID: 1676030128}
   - component: {fileID: 1676030127}
   - component: {fileID: 1676030130}
-  m_Layer: 0
-  m_Name: Enviroment
+  m_Layer: 3
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6415,6 +6466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinSpawner
   _prefabMoney: {fileID: 174238336711844416, guid: 29a3f84814ad1b94bb00eda7ccfbaf6a, type: 3}
+  _coinDetector: {fileID: 572390826}
   _spawnPositions:
   - {fileID: 1866597135}
 --- !u!4 &1866597135
@@ -6426,7 +6478,7 @@ Transform:
   m_GameObject: {fileID: 1866597133}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.37, y: 8.47, z: 0}
+  m_LocalPosition: {x: -0.03, y: 8.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7701,6 +7753,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2078947229196710077, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5872783333662670445, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
       propertyPath: m_BodyType
       value: 1
@@ -7720,6 +7776,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8616821104531268472, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
       insertIndex: -1
       addedObject: {fileID: 572433154}
+    - targetCorrespondingSourceObject: {fileID: 8616821104531268472, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 572433158}
   m_SourcePrefab: {fileID: 100100000, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    public  float Coins {  get; private set; }
+    private int _coins;
 
     public void AddCoinToWallet()
     {
-        Coins++;
+        Debug.Log("Метод AddCoinToWallet вызван");
+        _coins++;
+        Debug.Log($"{_coins}");
     }
 }

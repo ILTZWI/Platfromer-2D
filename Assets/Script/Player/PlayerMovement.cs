@@ -3,7 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private CheckIsGround _checkIsGround;
+    [SerializeField] private GroundChecker _checkIsGround;
+    [SerializeField] private Fliper _fliper;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _jumpHeihgt;
     [SerializeField] private Animator _animator;
@@ -24,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
         _animator.SetFloat("Speed", Mathf.Abs(_rigidbody.linearVelocity.x));
         _animator.SetBool("IsGrounded", _isGrounded);
-        Debug.Log(_moveInput);
     }
 
     private void FixedUpdate()
@@ -55,8 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        //if (_isGrounded)
-            _rigidbody.linearVelocity = new Vector2(_moveInput * _moveSpeed, _rigidbody.linearVelocity.y);
+        _rigidbody.linearVelocity = new Vector2(_moveInput * _moveSpeed, _rigidbody.linearVelocity.y);
     }
 
     private void Jump()
@@ -70,9 +69,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipSprite()
     {
-        if (_rigidbody.linearVelocity.x > 0)
-            transform.localScale = new Vector3(1, 1, 1);
-        else if (_rigidbody.linearVelocity.x < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+        if (_moveInput > 0)
+            _fliper.Flip();
+        else if (_moveInput < 0)
+            _fliper.UnFlip();
     }
 }

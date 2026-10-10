@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] Coin _prefabMoney;
+    [SerializeField] CoinDetector _coinDetector;
     [SerializeField] Transform[] _spawnPositions;
 
     private int _defaultCapacity = 1;
@@ -38,14 +39,23 @@ public class CoinSpawner : MonoBehaviour
         StartDelaySpawnCoin();
     }
 
+    private void OnEnable()
+    {
+        _coinDetector.DetectCoin += OnDetected;
+    }
+
+    private void OnDisable()
+    {
+        _coinDetector.DetectCoin -= OnDetected;
+    }
+
     private void SpawnCoin()
     {
         Coin coin = _coinPool.Get();
-        coin.CoinEncountered += OnEncountered;
         _isSpawned = false;
     }
 
-    private void OnEncountered(Coin coin)
+    private void OnDetected(Coin coin)
     {
         _coinPool.Release(coin);
         _isSpawned = true;
