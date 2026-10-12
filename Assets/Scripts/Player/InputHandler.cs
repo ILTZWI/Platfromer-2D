@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
+    private const string HorizontalAxis = "Horizontal";
     private const KeyCode JumpKey = KeyCode.Space;
 
     public float MoveInput {  get; private set; }
@@ -11,7 +12,7 @@ public class InputHandler : MonoBehaviour
 
     private void Update()
     {
-        MoveInput = Input.GetAxisRaw("Horizontal");
+        MoveInput = Input.GetAxisRaw(HorizontalAxis);
         ProcessJumpKey();
     }
 

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
+    private const string Speed = "Speed";
+    private const string IsGround = "IsGrounded";
+
     [SerializeField] private PlayerMover _playerMover;
     [SerializeField] private PlayerJump _playerJump;
     [SerializeField] private GroundChecker _groundChecker;
@@ -11,8 +14,8 @@ public class AnimationManager : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat("Speed", Mathf.Abs(_playerMover.Rigidbody.linearVelocity.x));
-        _animator.SetBool("IsGrounded", _isGround);
+        _animator.SetFloat(Speed, Mathf.Abs(_playerMover.Rigidbody.linearVelocity.x));
+        _animator.SetBool(IsGround, _isGround);
     }
 
     private void OnEnable()
