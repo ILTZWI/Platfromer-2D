@@ -28,7 +28,7 @@ public class CoinSpawner : MonoBehaviour
                 createFunc: () => Instantiate(_prefabMoney),
                 actionOnGet: (coin) => GetCoin(coin),
                 actionOnRelease: (coin) => ReleaseCoin(coin),
-                actionOnDestroy: (coin) => Destroy(coin),
+                actionOnDestroy: (coin) => Destroy(coin.gameObject),
                 defaultCapacity: _defaultCapacity,
                 maxSize: _maxSize
             );
