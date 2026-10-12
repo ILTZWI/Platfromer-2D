@@ -6,7 +6,7 @@ public class Wallet : MonoBehaviour
 {
     private int _coins;
 
-    public void AddCoinToWallet()
+    public void AddCoin()
     {
         Debug.Log("Метод AddCoinToWallet вызван");
         _coins++;

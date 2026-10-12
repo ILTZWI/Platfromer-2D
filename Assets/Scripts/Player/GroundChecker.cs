@@ -1,4 +1,4 @@
-using System;
+ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,9 +7,9 @@ public class GroundChecker : MonoBehaviour
     [SerializeField] private Transform _startRay;
     [SerializeField] private LayerMask _groundLayer;
 
-    public event Action<bool> IsGrounded;
-
     private bool _isGrounded;
+
+    public event Action<bool> OnGrounded;
 
     private void Update()
     {
@@ -27,6 +27,6 @@ public class GroundChecker : MonoBehaviour
         Color.red
     );
 
-        IsGrounded?.Invoke(hit.collider != null);
+        OnGrounded?.Invoke(hit.collider != null);
     }
 }

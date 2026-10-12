@@ -13,7 +13,7 @@ public class CoinDetector : MonoBehaviour
         if(collision.gameObject.TryGetComponent(out Coin coin))
         {
             DetectCoin?.Invoke(coin);
-            _wallet.AddCoinToWallet();
+            _wallet.AddCoin();
         }
     }
 }
