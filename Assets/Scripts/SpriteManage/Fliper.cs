@@ -1,35 +1,28 @@
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Fliper : MonoBehaviour
 {
-    [SerializeField] InputHandler _inputHandler;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private float _rotateAngle;
 
-    public bool IsTurned {  get; private set; }
+    public bool IsTurned { get; private set; }
 
-    private void LateUpdate()
+    public void TurnAsaidSprite(float direction)
     {
-        TurnAsaidSprite();
-    }
-
-    private void TurnAsaidSprite()
-    {
-        if (_inputHandler.MoveInput > 0)
+        if (direction > 0)
             Flip();
-        else if(_inputHandler.MoveInput < 0)
+        else if (direction < 0)
             UnFlip();
 
     }
 
-    public void Flip()
+    private void Flip()
     {
-        _spriteRenderer.flipX = false;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
-    public void UnFlip()
+    private void UnFlip()
     {
-        _spriteRenderer.flipX = true;
+        transform.rotation = Quaternion.Euler(0, _rotateAngle, 0);
     }
 }

@@ -3,14 +3,12 @@ using UnityEngine;
 [RequireComponent (typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Transform _startPosition;
-    [SerializeField] private Transform _targetPosition;
-    [SerializeField] private Fliper _fliper;
-    [SerializeField] private float _speed;
+    [SerializeField] private Transform[] _positions;
+    [SerializeField] private Mover _mover;
 
     private Rigidbody2D _rigidbody;
 
-    private bool _isRichedPoint = false;
+    private int _currentPositionIndex = 0;
 
     private void Awake()
     {
@@ -24,34 +22,28 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {
-        Transform target;
-
-        if(_isRichedPoint)
-        {
-            target = _startPosition;
-            _fliper.UnFlip();
-        }
-        else
-        {
-            target = _targetPosition;
-            _fliper.Flip();
-        }
+        Transform target = _positions[_currentPositionIndex];
 
         Move(target);
 
-        if(CompareDistance(target)  < 1) 
-            _isRichedPoint = _isRichedPoint ? false : true;
+        if (CompareDistance(target) < 0.1)
+        {
+            _currentPositionIndex++;
+
+            if (_currentPositionIndex >= _positions.Length)
+                _currentPositionIndex = 0;
+        }
     }
 
     private void Move(Transform target)
     {
-        _rigidbody.linearVelocity = GetDirection(target) * _speed;
+        _mover.Move(GetDirection(target),_rigidbody);
     }
 
-    private Vector2 GetDirection(Transform target)
-    {
-        Vector2 direction = target.position - _rigidbody.transform.position; 
-        return direction.normalized;
+    private float GetDirection(Transform target)
+   {
+        float direction = target.position.x - _rigidbody.transform.position.x; 
+        return direction;
     }
 
     private float CompareDistance(Transform target)

@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public event Action<Coin> OnEncountered;
+    public event Action<Coin> Encountered;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Player player))
         {
-            OnEncountered?.Invoke(this);
+            Encountered?.Invoke(this);
         }
     }
 }

@@ -829,7 +829,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 448155732}
-  - component: {fileID: 448155731}
   m_Layer: 0
   m_Name: AnimationManager
   m_TagString: Untagged
@@ -837,22 +836,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &448155731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448155730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6558f217fdb5d645b75550910968e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimationManager
-  _playerMover: {fileID: 572390828}
-  _playerJump: {fileID: 572390830}
-  _groundChecker: {fileID: 1269374978}
-  _animator: {fileID: 572390821}
 --- !u!4 &448155732
 Transform:
   m_ObjectHideFlags: 0
@@ -1031,12 +1014,10 @@ GameObject:
   - component: {fileID: 572390823}
   - component: {fileID: 572390822}
   - component: {fileID: 572390821}
-  - component: {fileID: 572390831}
-  - component: {fileID: 572390825}
-  - component: {fileID: 572390827}
   - component: {fileID: 572390828}
-  - component: {fileID: 572390830}
-  - component: {fileID: 572390829}
+  - component: {fileID: 572390827}
+  - component: {fileID: 572390826}
+  - component: {fileID: 572390825}
   - component: {fileID: 572390818}
   - component: {fileID: 572390824}
   m_Layer: 0
@@ -1217,39 +1198,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 572390817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5106d43edbeed443b5d2f8fdb9094c1, type: 3}
+  m_Script: {fileID: 11500000, guid: dd3f3fb0a6f70fb448e6271c7333a31a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Wallet
---- !u!114 &572390827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572390817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b410c935f175c374c96f36cb4c773203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Fliper
-  _inputHandler: {fileID: 572390829}
-  _spriteRenderer: {fileID: 572390822}
---- !u!114 &572390828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572390817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a395da18c7684b42b3fb9fe00dc1a09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMover
-  _inputHandler: {fileID: 572390829}
-  _checkIsGround: {fileID: 1269374978}
-  _moveSpeed: 4
---- !u!114 &572390829
+  m_EditorClassIdentifier: Assembly-CSharp::GroundDetector
+  _startRay: {fileID: 448155732}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &572390826
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1261,7 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034dcb2f8ed33294e90000b69e366289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
---- !u!114 &572390830
+--- !u!114 &572390827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1270,15 +1226,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 572390817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acaca9ad932248c4291cb63a0c9140de, type: 3}
+  m_Script: {fileID: 11500000, guid: 500b730f0d81f9a4ca36438fb52e163b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
-  _animationManager: {fileID: 448155731}
-  _inputHandler: {fileID: 572390829}
-  _groundChecker: {fileID: 1269374978}
-  _playerMover: {fileID: 572390828}
-  _jumpHeihgt: 7
---- !u!114 &572390831
+  m_EditorClassIdentifier: Assembly-CSharp::Mover
+  _moveSpeed: 0
+--- !u!114 &572390828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1332,25 +1284,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.86, y: -0.86}
   m_Size: {x: 4.01, y: 6.16}
   m_Direction: 0
---- !u!212 &572433156 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 2078947229196710077, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
-  m_PrefabInstance: {fileID: 4095281782729471849}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &572433158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572433149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b410c935f175c374c96f36cb4c773203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Fliper
-  _inputHandler: {fileID: 0}
-  _spriteRenderer: {fileID: 572433156}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3373,8 +3306,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundChecker
   _startRay: {fileID: 1269374977}
   _groundLayer:
-    serializedVersion: 2
     m_Bits: 8
+  _isGrounded: 0
 --- !u!1 &1397248742
 GameObject:
   m_ObjectHideFlags: 0
@@ -6642,7 +6575,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1866597135}
-  - component: {fileID: 1866597134}
   m_Layer: 0
   m_Name: CoinSpawner
   m_TagString: Untagged
@@ -6650,21 +6582,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1866597134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866597133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e22bf7a65a231db44aa1f0a7ed907a08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinSpawner
-  _prefabMoney: {fileID: 174238336711844416, guid: 29a3f84814ad1b94bb00eda7ccfbaf6a, type: 3}
-  _spawnPositions:
-  - {fileID: 1866597135}
 --- !u!4 &1866597135
 Transform:
   m_ObjectHideFlags: 0
@@ -8094,7 +8011,7 @@ PrefabInstance:
     - target: {fileID: 8131643930942153024, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
       propertyPath: _fliper
       value: 
-      objectReference: {fileID: 572433158}
+      objectReference: {fileID: 0}
     - target: {fileID: 8131643930942153024, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
       propertyPath: _startPosition
       value: 
@@ -8111,9 +8028,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8616821104531268472, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 572433158}
     - targetCorrespondingSourceObject: {fileID: 8616821104531268472, guid: 7fb362dffe34b994ca6e7f0c661e1a16, type: 3}
       insertIndex: -1
       addedObject: {fileID: 572433154}

@@ -41,12 +41,13 @@ public class CoinSpawner : MonoBehaviour
     private void SpawnCoin()
     {
         Coin coin = _coinPool.Get();
-        coin.OnEncountered += OnEncounter;
+        coin.Encountered += OnEncountered;
         _isSpawned = false;
     }
 
-    private void OnEncounter(Coin coin)
+    private void OnEncountered(Coin coin)
     {
+        coin.Encountered -= OnEncountered;
         _coinPool.Release(coin);
         _isSpawned = true;
         StartDelaySpawnCoin();
