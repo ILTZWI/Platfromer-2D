@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class AnimationHandler : MonoBehaviour
+public class PlayerAnimationHandler : MonoBehaviour
 {
     private const string Speed = "Speed";
     private const string IsGround = "IsGrounded";
     private const string Jump = "Jump";
+    private const string Attack = "Attack";
 
     [SerializeField] private Animator _animator;
 
@@ -19,14 +20,19 @@ public class AnimationHandler : MonoBehaviour
     }
     private void LogParametersAnimator()
     {
-        float speed = _animator.GetFloat(PlayerAnimatorData.Params.Speed);
-        bool isGrounded = _animator.GetBool(PlayerAnimatorData.Params.IsGrounded);
+        float speed = _animator.GetFloat(PlayerAnimatorData.PlayerAnimationsParams.Speed);
+        bool isGrounded = _animator.GetBool(PlayerAnimatorData.PlayerAnimationsParams.IsGrounded);
     }
 
     private void SetupAnimations(float speed, bool isGrounded, int stepsAmount, bool shouldAttack)
     {
-        _animator.SetFloat(PlayerAnimatorData.Params.Speed, speed);
-        _animator.SetBool(PlayerAnimatorData.Params.IsGrounded, isGrounded);
+        _animator.SetFloat(PlayerAnimatorData.PlayerAnimationsParams.Speed, speed);
+        _animator.SetBool(PlayerAnimatorData.PlayerAnimationsParams.IsGrounded, isGrounded);
+    }
+
+    public void SetupAnimationAttack()
+    {
+        _animator.SetTrigger(Attack);
     }
 
     public void SetupAnimationJump()
