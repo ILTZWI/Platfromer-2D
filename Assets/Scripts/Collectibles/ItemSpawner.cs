@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class CoinSpawner : MonoBehaviour
+public class ItemSpawner : MonoBehaviour
 {
-    [SerializeField]private Coin _prefabMoney;
+    [SerializeField]private Item _prefabItem;
     [SerializeField] private Transform[] _spawnPositions;
 
     private int _defaultCapacity = 1;
@@ -14,7 +14,7 @@ public class CoinSpawner : MonoBehaviour
 
     private bool _isSpawned = true;
 
-    private ObjectPool<Coin> _coinPool;
+    private ObjectPool<Item> _itemPool;
     private Coroutine _coroutine;
     private WaitForSeconds _wait;
 
@@ -22,12 +22,12 @@ public class CoinSpawner : MonoBehaviour
     {
         _wait = new WaitForSeconds(_delay);
 
-        _coinPool = new ObjectPool<Coin>
+        _itemPool = new ObjectPool<Item>
             (
-                createFunc: () => Instantiate(_prefabMoney),
-                actionOnGet: (coin) => GetCoin(coin),
-                actionOnRelease: (coin) => ReleaseCoin(coin),
-                actionOnDestroy: (coin) => Destroy(coin.gameObject),
+                createFunc: () => Instantiate(_prefabItem),
+                actionOnGet: (item) => GetItem(item),
+                actionOnRelease: (item) => ReleaseCoin(item),
+                actionOnDestroy: (item) => Destroy(item.gameObject),
                 defaultCapacity: _defaultCapacity,
                 maxSize: _maxSize
             );
@@ -40,33 +40,33 @@ public class CoinSpawner : MonoBehaviour
 
     private void SpawnCoin()
     {
-        Coin coin = _coinPool.Get();
-        coin.Encountered += OnEncountered;
+        Item item = _itemPool.Get();
+        item.Encountered += OnEncountered;
         _isSpawned = false;
     }
 
-    private void OnEncountered(Coin coin)
+    private void OnEncountered(Item item)
     {
-        coin.Encountered -= OnEncountered;
-        _coinPool.Release(coin);
+        item.Encountered -= OnEncountered;
+        _itemPool.Release(item);
         _isSpawned = true;
         StartDelaySpawnCoin();
     }
 
-    private void GetCoin(Coin coin)
+    private void GetItem(Item item)
     {
         foreach (Transform position in _spawnPositions)
         {
             Vector2 spawnPosition = position.position;
-            coin.transform.position = spawnPosition;
+            item.transform.position = spawnPosition;
 
-            coin.gameObject.SetActive(true);
+            item.gameObject.SetActive(true);
         }
     }
 
-    private void ReleaseCoin(Coin coin)
+    private void ReleaseCoin(Item item)
     {
-        coin.gameObject.SetActive(false);
+        item.gameObject.SetActive(false);
     }
 
     private void StartDelaySpawnCoin()

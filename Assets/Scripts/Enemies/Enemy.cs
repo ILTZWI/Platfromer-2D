@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private Cooldown _cooldown;
     [SerializeField] private DetectionZone _detectionZone;
     [SerializeField] private Transform[] _positions;
-    [SerializeField] private EnemyAnimationHandler _animationHandler;
+    [SerializeField] private AnimationHandler _animationHandler;
     [SerializeField] private Fliper _fliper;
     [SerializeField] private Health _health;
 
@@ -111,6 +111,5 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamage(int enemyDamage)
     {
         _health.TakeDamage(enemyDamage);
-        Debug.Log(_health + "enemy");
     }
 }

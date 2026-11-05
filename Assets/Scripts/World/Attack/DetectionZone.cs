@@ -35,7 +35,7 @@ public class DetectionZone : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_detectPosition.position, _detectRadius);
     }
 }

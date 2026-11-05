@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerAnimationHandler : MonoBehaviour
+public class AnimationHandler : MonoBehaviour
 {
     private const string Speed = "Speed";
     private const string IsGround = "IsGrounded";
@@ -20,14 +20,14 @@ public class PlayerAnimationHandler : MonoBehaviour
     }
     private void LogParametersAnimator()
     {
-        float speed = _animator.GetFloat(PlayerAnimatorData.PlayerAnimationsParams.Speed);
-        bool isGrounded = _animator.GetBool(PlayerAnimatorData.PlayerAnimationsParams.IsGrounded);
+        float speed = _animator.GetFloat(AnimatorData.AnimationsParams.Speed);
+        bool isGrounded = _animator.GetBool(AnimatorData.AnimationsParams.IsGrounded);
     }
 
     private void SetupAnimations(float speed, bool isGrounded, int stepsAmount, bool shouldAttack)
     {
-        _animator.SetFloat(PlayerAnimatorData.PlayerAnimationsParams.Speed, speed);
-        _animator.SetBool(PlayerAnimatorData.PlayerAnimationsParams.IsGrounded, isGrounded);
+        _animator.SetFloat(AnimatorData.AnimationsParams.Speed, speed);
+        _animator.SetBool(AnimatorData.AnimationsParams.IsGrounded, isGrounded);
     }
 
     public void SetupAnimationAttack()

@@ -9,7 +9,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Health _health;
     [SerializeField] private Cooldown _cooldown;
     [SerializeField] private InputHandler _inputHandler;
-    [SerializeField] private PlayerAnimationHandler _animationHandler;
+    [SerializeField] private AnimationHandler _animationHandler;
     [SerializeField] private CollisionHandler _collisionHandler;
     [SerializeField] private GroundDetector _groundDetector;
     [SerializeField] private Fliper _fliper;
