@@ -18,13 +18,14 @@ public class AnimationHandler : MonoBehaviour
     {
         _animator.SetBool(IsGround, isGround);
     }
+
     private void LogParametersAnimator()
     {
         float speed = _animator.GetFloat(AnimatorData.AnimationsParams.Speed);
         bool isGrounded = _animator.GetBool(AnimatorData.AnimationsParams.IsGrounded);
     }
 
-    private void SetupAnimations(float speed, bool isGrounded, int stepsAmount, bool shouldAttack)
+    private void SetupAnimations(float speed, bool isGrounded,bool attack)
     {
         _animator.SetFloat(AnimatorData.AnimationsParams.Speed, speed);
         _animator.SetBool(AnimatorData.AnimationsParams.IsGrounded, isGrounded);

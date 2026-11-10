@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SearchService;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour, IDamageable
@@ -17,7 +16,6 @@ public class Enemy : MonoBehaviour, IDamageable
     private Transform _positionEnemy;
 
     private bool _isDetected;
-    private bool _isAlive;
 
     private int _currentPositionIndex = 0;
 
@@ -29,6 +27,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Update()
     {
         Move();
+        Attack();
         HasEnoughHealth();
     }
 
@@ -69,7 +68,6 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         _positionEnemy = player.transform;
         _isDetected = detected;
-        Attack();
     }
 
     private void Chase()

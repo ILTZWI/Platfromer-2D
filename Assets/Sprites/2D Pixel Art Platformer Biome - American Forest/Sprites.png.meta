@@ -2039,7 +2039,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2061,7 +2061,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2070,6 +2070,28 @@ TextureImporter:
       bones: []
       spriteID: fb780324354586c4db924149bf40afda
       internalID: -890148158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 130
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b3582dd2fb609e46a9d858ad9aeaec6
+      internalID: 779089980
       vertices: []
       indices: 
       edges: []
@@ -2098,6 +2120,7 @@ TextureImporter:
       Plant3: 2018053615
       Plant4: -400365580
       Plant5: -116768579
+      Sprites_0: 779089980
       Stone1: 1746087828
       Stone2: -2145294881
       Stone3: -1019068024
